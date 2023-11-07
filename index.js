@@ -20,10 +20,7 @@ bot.command('start', async (ctx) => {
     .row()
     .text('Случайный вопрос')
     .resized();
-  await ctx.reply(
-    'Привет! Я - Frontend Interview Prep Bot 🤖 \nЯ помогу тебе подготовиться к интервью по фронтенду',
-  );
-  await ctx.reply('С чего начнем? Выбери тему вопроса в меню 👇', {
+  await ctx.reply('С чего начнем? 👇', {
     reply_markup: startKeyboard,
   });
 });
@@ -79,7 +76,10 @@ bot.on('callback_query:data', async (ctx) => {
   }
 
   if (callbackData.isCorrect) {
-    await ctx.reply('Верно ✅');
+    await ctx.reply('Верно ✅', {
+      parse_mode: 'HTML',
+      disable_web_page_preview: true,
+    });
     await ctx.answerCallbackQuery();
     return;
   }
